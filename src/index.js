@@ -24,7 +24,9 @@ const getPropValue = ( selectors, prop ) => {
 const customProps = postcss.plugin( 'postcss-custom-props', () => css => {
   css.walkRules( rule => {
     rule.walkDecls( decl => {
-      const { prop, value, parent: { selector }} = decl;
+      const { prop, parent: { selector }} = decl;
+
+      let { value } = decl;
 
       // Value includes variable function call
       if ( value.includes( 'var(' )) {
@@ -39,7 +41,7 @@ const customProps = postcss.plugin( 'postcss-custom-props', () => css => {
           const propValue = getPropValue([ selector, ':root' ], matchedProp );
 
           // Replace var(...) with prop value
-          decl.value = value.replace( match, propValue ); // eslint-disable-line no-param-reassign
+          decl.value = value = value.replace( match, propValue ); // eslint-disable-line no-param-reassign,max-len
         });
       }
 
