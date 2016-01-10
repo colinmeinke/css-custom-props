@@ -48,6 +48,7 @@
     "eslint-config-airbnb": "^3.1.0",
     "eslint-config-spaced": "^2.0.0",
     "eslint-plugin-react": "^3.14.0",
+    "expect": "^1.13.4",
     "mocha": "^2.3.4",
     "postcss": "^5.0.14",
     "rimraf": "^2.5.0",
