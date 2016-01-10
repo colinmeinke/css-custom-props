@@ -1,5 +1,6 @@
 {
   "name": "postcss-custom-props",
+  "version": "0.0.0-semantically-released",
   "description": "A PostCSS plugin to enable CSS Custom Properties",
   "main": "lib/index.js",
   "scripts": {
