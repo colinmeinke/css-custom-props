@@ -8,6 +8,7 @@
     "clean": "rimraf lib",
     "commit": "git-cz",
     "lint": "eslint src test",
+    "prepublish": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-core/register test/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
