@@ -81,4 +81,22 @@ describe( 'rule', () => {
       expect( css ).toInclude( expectedOutput );
     });
   });
+
+  it( 'should replace `var(--foo)` value after definition on seperate multi-selector rule', () => {
+    const input = 'h1, h2 { --foo: red; } h2 { color: var(--foo); }';
+    const expectedOutput = 'h2 { color: red; }';
+
+    return process( input ).then(({ css }) => {
+      expect( css ).toInclude( expectedOutput );
+    });
+  });
+
+  it( 'should replace `var(--foo)` value in multi-selector rule after seperate definition', () => {
+    const input = 'h1 { --foo: red; } h1, h2 { color: var(--foo); }';
+    const expectedOutput = 'h1, h2 { color: red; }';
+
+    return process( input ).then(({ css }) => {
+      expect( css ).toInclude( expectedOutput );
+    });
+  });
 });

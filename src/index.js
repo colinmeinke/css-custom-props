@@ -2,12 +2,18 @@ import 'babel-polyfill';
 
 import postcss from 'postcss';
 
+const getAllSelectors = s => s.split( /\s{0,},\s{0,}/g );
+
 const props = new Map();
 
-const setProp = ( selector, prop, value ) => props.set( selector, {
-  ...props.get( selector ),
-  [ prop ]: value,
-});
+const setProp = ( selector, prop, value ) => {
+  getAllSelectors( selector ).forEach( s => {
+    props.set( s, {
+      ...props.get( s ),
+      [ prop ]: value,
+    });
+  });
+};
 
 const getPropValue = ( selectors, prop ) => {
   for ( const selector of selectors ) {
@@ -38,7 +44,10 @@ const customProps = postcss.plugin( 'postcss-custom-props', () => css => {
           const matchedProp = match.slice( 4, -1 ).trim();
 
           // Get stored value of prop
-          const propValue = getPropValue([ selector, ':root' ], matchedProp );
+          const propValue = getPropValue([
+            ...getAllSelectors( selector ),
+            ':root',
+          ], matchedProp );
 
           // Replace var(...) with prop value
           decl.value = value = value.replace( match, propValue ); // eslint-disable-line no-param-reassign,max-len
@@ -48,7 +57,7 @@ const customProps = postcss.plugin( 'postcss-custom-props', () => css => {
       // Prop includes custom property definition
       if ( prop.startsWith( '--' )) {
         // Add prop to map
-        setProp( selector, prop, decl.value );
+        setProp( selector, prop, value );
         // Remove style declaration
         decl.remove();
       }
