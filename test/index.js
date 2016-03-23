@@ -3,9 +3,7 @@ import postcss from 'postcss';
 
 import customProps from '../src';
 
-const process = css => {
-  return postcss([ customProps() ]).process( css );
-};
+const process = css => postcss([ customProps() ]).process( css );
 
 describe( 'custom property definition', () => {
   it( 'should replace `var(--foo)` value with custom property', () => {
