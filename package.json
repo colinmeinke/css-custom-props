@@ -59,7 +59,6 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
-
     "commit": "git-cz",
     "fix": "standard --fix",
     "lint": "standard --verbose | snazzy",
