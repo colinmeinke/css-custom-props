@@ -59,13 +59,14 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
-    "clean": "rimraf lib",
+
     "commit": "git-cz",
     "fix": "standard --fix",
     "lint": "standard --verbose | snazzy",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "npm run tidy && npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "mocha --compilers js:babel-core/register test/*.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "tidy": "rimraf lib"
   },
   "version": "0.0.0-semantically-released"
 }
