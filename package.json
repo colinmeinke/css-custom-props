@@ -1,44 +1,29 @@
 {
-  "name": "postcss-custom-props",
-  "version": "0.0.0-semantically-released",
-  "description": "A PostCSS plugin to enable CSS Custom Properties",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel src --out-dir lib",
-    "clean": "rimraf lib",
-    "commit": "git-cz",
-    "fix": "standard --fix",
-    "lint": "standard --verbose | snazzy",
-    "prepublish": "npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-core/register test/*.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
-  },
   "author": {
     "name": "Colin Meinke",
     "email": "hello@colinmeinke.com",
     "url": "colinmeinke.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/colinmeinke/postcss-custom-props"
+  "babel": {
+    "plugins": [
+      "transform-object-rest-spread"
+    ],
+    "presets": [
+      "es2015"
+    ]
   },
   "bugs": {
     "url": "https://github.com/colinmeinke/postcss-custom-props/issues"
   },
-  "license": "ISC",
-  "keywords": [
-    "custom",
-    "postcss",
-    "postcss-plugin",
-    "properties",
-    "props"
-  ],
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "description": "A PostCSS plugin to enable CSS Custom Properties",
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "cz-conventional-changelog": "^1.2.0"
-  },
-  "peerDependencies": {
-    "postcss": "^5.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
@@ -55,9 +40,32 @@
     "snazzy": "^5.0.0",
     "standard": "^8.4.0"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
-  }
+  "keywords": [
+    "custom",
+    "postcss",
+    "postcss-plugin",
+    "properties",
+    "props"
+  ],
+  "license": "ISC",
+  "main": "lib/index.js",
+  "name": "postcss-custom-props",
+  "peerDependencies": {
+    "postcss": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colinmeinke/postcss-custom-props"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "rimraf lib",
+    "commit": "git-cz",
+    "fix": "standard --fix",
+    "lint": "standard --verbose | snazzy",
+    "prepublish": "npm run clean && npm run build",
+    "test": "mocha --compilers js:babel-core/register test/*.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "version": "0.0.0-semantically-released"
 }
